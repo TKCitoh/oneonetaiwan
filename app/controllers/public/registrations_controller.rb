@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  #ゲストユーザーを削除できないようにする記述
+  before_action :ensure_normal_end_user, only: :destroy
+
+  def ensure_normal_end_user
+    if resource.email == 'ttt@ttt.com'
+      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    end
+  end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -59,4 +67,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  def after_sign_up_path_for(resource)
+    end_users_my_page_path(current_end_user)
+  end
+
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
 end

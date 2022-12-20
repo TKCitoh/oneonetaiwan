@@ -38,7 +38,7 @@
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
-          <% elsif end_uset_signed_in? %>
+          <% elsif end_user_signed_in? %>
             <li class="nav-link text-light">
               <%= link_to end_users_my_page_path do %>
                 <i class="fas fa-home"></i> マイページ
@@ -60,6 +60,11 @@
               <% end %>
             </li>
           <% else %>
+            <li class="nav-link text-light">
+              <%= link_to end_users_guest_sign_in_path do %>
+                <i class="fas fa-home"></i> ゲストログイン（閲覧用）
+              <% end %>
+            </li>
             <li class="nav-link text-light">
               <%= link_to about_path do %>
                 <i class="fas fa-home"></i> About

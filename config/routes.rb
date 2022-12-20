@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
  }
 
+ # ゲストログイン用メソッド
+ devise_scope :end_user do
+    get 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+    post 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+ end
+
  #URL変更せずコントローラーのみnamespace使用
  scope module: :public do
    root to: "homes#top"#ルートパス"/""
