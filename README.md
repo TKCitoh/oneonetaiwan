@@ -8,7 +8,6 @@
 以前1年ほど住んでいた台湾には、隠れた名所がたくさん存在します。
 日本人の中でも既に台湾に詳しい方はたくさんいると思いますが、
 今以上に台湾の良いところを知っていただくために制作を始めました。
-
 このサイトを通して、台湾という場所が日本人により浸透していけばいいと思っています。
 
 ### ターゲットユーザ
@@ -37,8 +36,8 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 画像素材：https://www.photo-ac.com/  動画素材：https://www.pexels.com/ja-jp/
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
-- 
+- 画像素材：https://www.photo-ac.com/. :https://o-dan.net/ja/  動画素材：https://www.pexels.com/ja-jp/
+- イラスト素材：https://tyoudoii-illust.com/?s=（使わない場合は消す）
+-
 ##実装機能リスト
 ・https://docs.google.com/spreadsheets/d/1NNKRzRtfgTjCzQBZAiYPBHHIvHa9bbaY66T7w4XcdZY/edit#gid=454260661
