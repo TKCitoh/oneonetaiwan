@@ -4,9 +4,9 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  has_many :post, dependent: :destroy
-  has_many :comment, dependent: :destroy
-  has_many :like, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def self.guest
   find_or_create_by!(email: 'ttt@ttt.com') do |end_user|

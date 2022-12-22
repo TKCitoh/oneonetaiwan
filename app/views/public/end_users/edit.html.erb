@@ -1,2 +1,20 @@
-<h1>Public::EndUsers#edit</h1>
-<p>Find me in app/views/public/end_users/edit.html.erb</p>
+<div class = "container">
+  <h2>会員情報編集</h2>
+  <%= form_with model: @end_user, url: end_users_information_path, method: :patch do |f| %>
+    <div class="field">
+      <%= f.label "名前" %>
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label "メールアドレス" %>
+      <%= f.text_field :email, autofocus: true %>
+  　</div>
+
+    <%= f.submit "編集内容を保存",class: "btn btn-success" %>
+
+  <% end %>
+
+  <%= button_to "退会する", end_users_unsubscribe_path, method: :get, class: "btn btn-danger" %>
+
+</div>

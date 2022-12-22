@@ -17,7 +17,7 @@ Rails.application.routes.draw do
  #URL変更せずコントローラーのみnamespace使用
  scope module: :public do
    root to: "homes#top"#ルートパス"/""
-   get 'about' => 'public/homes#about'
+   get 'about' => 'homes#about'
 
    get 'end_users/my_page' => 'end_users#show'
    get 'end_users/information/edit' => 'end_users#edit'
@@ -26,15 +26,16 @@ Rails.application.routes.draw do
    patch 'end_users/withdraw'
    get 'end_users/likes'
 
-   resources :likes, only: [:create, :destroy]
-
+   #ユーザーがいいね・コメントしたのはどの投稿なのかを分かるようにするため、postsコントローラーのルーティングにネストさせる
    resources :posts, only: [:new, :create, :show, :index, :edit, :update, :destroy] do
       collection do
         get 'search'
       end
+      resources :comments, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
    end
 
-   resources :comments, only: [:create, :destroy]
+
 
  end
 

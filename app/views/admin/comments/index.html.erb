@@ -1,2 +1,28 @@
-<h1>Admin::Comments#index</h1>
-<p>Find me in app/views/admin/comments/index.html.erb</p>
+<div class=“container”>
+  <h2>コメント一覧</h2>
+	  <table class="table">
+	    <thead>
+	      <tr>
+	          <th>コメントID</th>
+	          <th>ユーザーID</th>
+	          <th>名前</th>
+	          <th>コメント</th>
+	          <th></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <% @comments.each do |comment| %>
+	    	<tr>
+          <td><%= comment.id %></td>
+          <td><%= comment.end_user.id %></td>
+          <td><%= link_to admin_end_user_path(end_user) do %>
+              <%= comment.end_user.name %></td>
+              <% end %>
+          <td><%= comment.comment %></td>
+          <td><%= link_to "削除する", admin_comment_path(comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+        </tr>
+        <% end %>
+	    </tbody>
+	   </table>
+</div>
+
