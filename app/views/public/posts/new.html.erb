@@ -1,2 +1,27 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="height: 1000px">
+    <%= form_with model: @post, local: true do |f| %>
+    <div class="field mb-3">
+      <label>★画像・動画のアップロード</label></br>
+      <%= f.file_field :image, accept: '.jpeg, .jpg, .gif, .png, .bmp, .mp4, .m4v, .avi, .mov'  %>
+    </div>
+    <div class="mb-3">
+      <label>★題名</label></br>
+      <%= f.text_field :title, autofocus: true, placeholder: "(例)台北101の~~"%>
+    </div>
+    <div class="mb-3">
+      <label>★説明</label></br>
+      <%= f.text_area :caption %>
+    </div>
+    <div class="mb-3">
+      <label>★タグ（カンマ「,」で複数追加可能）</label></br>
+      <!--%= f.text_field :name %-->
+    </div>
+
+      <%= f.submit "投稿" ,class: "btn btn-primary" %>
+
+    <% end %>
+    </div>
+  </div>
+</div>
