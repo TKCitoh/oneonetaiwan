@@ -23,12 +23,16 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
-    @post.save
+    if @post.save
     redirect_to post_path(current_end_user)
+    else
+    render :new
+    end
   end
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def destroy
@@ -46,6 +50,14 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image_video, :title, :caption, :name)
+    params.require(:post).permit(:image, :video, :title, :caption, :name)
   end
+
+  #ゲストのアクセス制限
+  def guest_check
+    if current_end_user == EndUser.find(1)
+      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+    end
+  end
+
 end

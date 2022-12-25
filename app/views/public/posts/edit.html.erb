@@ -3,8 +3,10 @@
     <%= form_with model: @post, url: post_path(post), method: :patch do |f| %>
       <div class="col-12" style="height: 1000px">
         <div class="field">
-          <%= f.label "画像・動画" %>
-          <%= f.text_field :, autofocus: true %>
+          <%= f.label "画像" %>
+          <%= f.text_field :image, autofocus: true %>
+          <%= f.label "動画" %>
+          <%= f.text_field :video, autofocus: true %>
         </div>
 
         <div class="field">

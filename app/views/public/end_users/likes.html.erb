@@ -1,2 +1,22 @@
-<h1>Public::EndUsers#likes</h1>
-<p>Find me in app/views/public/end_users/likes.html.erb</p>
+<div class="container">
+  <h2>いいね一覧</h2>
+	  <div class="row">
+	    <% @like_posts.each do |post| %>
+	    <div class="col-xs-3">
+  		  <table class="table table-bordered">
+          <tr>
+            <td><%= link_to post_path(post) do %>
+                  <%= image_tag post.get_image(100,100) %>
+                  <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= link_to post.title, post_path(post) %></td>
+          </tr>
+          <tr>
+            <td><%= link_to post.user.name, user_path(post.user.id) %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</div>

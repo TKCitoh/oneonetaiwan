@@ -15,8 +15,16 @@
                   <%= image_tag post.get_image(100,100) %>
                   <% end %>
               </td>
+              <td><%= link_to post_path(post) do %>
+                  <%= video_tag post.get_video %>
+                  <% end %>
+              </td>
+            </tr>
             <tr>
               <td><%= link_to post.title, post_path(post) %></td>
+            </tr>
+            <tr>
+              <td><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></td>
             </tr>
           </table>
         </div>
