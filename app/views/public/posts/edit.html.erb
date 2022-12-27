@@ -1,12 +1,15 @@
 <div class="container">
   <h2>投稿編集画面</h2>
-    <%= form_with model: @post, url: post_path(post), method: :patch do |f| %>
+    <%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
       <div class="col-12" style="height: 1000px">
         <div class="field">
           <%= f.label "画像" %>
-          <%= f.text_field :image, autofocus: true %>
+          <%= f.file_field :image, accept: '.jpeg, .jpg, .gif, .png, .bmp' %>
+        </div>
+
+        <div class="field">
           <%= f.label "動画" %>
-          <%= f.text_field :video, autofocus: true %>
+          <%= f.file_field :video, accept: '.mp4, .m4v, .avi, .mov' %>
         </div>
 
         <div class="field">
@@ -20,8 +23,8 @@
         </div>
 
         <div class="field">
-          <%= f.label "タグ" %>
-          <%= f.text_field :, autofocus: true %>
+          <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+           <%= f.text_field :name, value: @tag_list, class: "form-control"%>
         </div>
 
         <%= f.submit "編集内容を保存",class: "btn btn-success" %>

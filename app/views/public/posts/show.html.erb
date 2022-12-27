@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-12" style="height: 1000px">
       <div class="field mb-3">
-        <%= image_tag @post.get_image %>
-        <%= video_tag @post.get_video %>
+        <%= image_tag @post.get_image(100,100) %>
+        <%# video_tag @post.get_video %>
       </div>
       <div class="mb-3">
         <label>題名</label></br>
@@ -15,15 +15,12 @@
         <%= @post.caption %>
       </div>
       <div class="mb-3">
-        <%# タグ %>
-      </div>
-      <div class="mb-3">
         <label>ユーザー画像</label></br>
 
       </div>
       <div class="mb-3">
         <label>ユーザーネーム</label></br>
-        <%= @post.user.name %>
+        <%= @post.end_user.name %>
       </div>
       <div class="mb-3">
         <label>投稿日</label></br>
@@ -36,8 +33,8 @@
               <% end %>
           </p>
         <% else %>
-          <p><%= link_to post_image_favorites_path(@post_image), method: :post do %>
-              ♡<%= @post_image.favorites.count %> いいね
+          <p><%= link_to post_likes_path(@post), method: :post do %>
+              ♡<%= @post.likes.count %> いいね
               <% end %>
           </p>
         <% end %>
@@ -59,6 +56,13 @@
           <%= f.submit "送信する" %>
         <% end %>
       </div>
+      <div>
+        <% @post_tags.each do |tag| %>
+          <%= link_to tag.name,search_tag_posts_path(tag_id: tag.id)%>
+          <%="(#{tag.posts.count})" %>
+        <% end %>
+      </div>
+      <%= link_to "編集する", edit_post_path, class: "btn btn-success"%>
     </div>
   </div>
 </div>

@@ -72,4 +72,21 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
+
+  protected
+  # 退会しているかを判断するメソッド
+  def end_user_state
+    ## 入力されたemailからアカウントを1件取得
+    @end_user = EndUser.find_by(email: params[:end_user][:email])
+    ## アカウントを取得できなかった場合、このメソッドを終了する
+    return if !@end_user
+    ## 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
+    if @end_user.valid_password?(params[:end_user][:password])
+    ##
+    if @end_user.is_deleted
+    redirect_to new_end_user_registration_path
+    else
+    end
+    end
+  end
 end

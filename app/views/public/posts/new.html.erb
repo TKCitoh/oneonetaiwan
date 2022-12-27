@@ -30,12 +30,73 @@
     </div>
     <div class="mb-3">
       <label>★タグ（カンマ「,」で複数追加可能）</label></br>
-      <!--%= f.text_field :name %-->
+      <%= f.text_field :name %>
     </div>
 
       <%= f.submit "投稿" ,class: "btn btn-primary" %>
 
     <% end %>
+
+    <div class="search-form">
+  <input id="address" class="search-name" type="textbox" placeholder="現在地から近くの役所が検索できます">
+  <input type="button" class="btn btn-outline-success" value="検索する" onclick="codeAddress()">
+</div>
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 50vh;
+  width: 60vw;
+  margin: 0 auto;
+}
+</style>
+
+<script>
+  let map
+  let geocoder
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+    if(!navigator.geolocation) {
+      alert('Geolocation APIに対応していません');
+      return false;
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: latLng,
+        zoom: 12,
+      });
+
+      marker = new google.maps.Marker({
+        position:  latLng,
+        map: map
+      });
+    }, function() {
+        alert('位置情報取得に失敗しました');
+      });
+  }
+
+  function codeAddress(){
+    let inputAddress = document.getElementById('address').value;
+
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        let marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
+          alert('該当する結果がありませんでした：' + status);
+      }
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
     </div>
   </div>
 </div>

@@ -39,6 +39,6 @@ class Public::EndUsersController < ApplicationController
   end
 
   def set_end_user
-    @end_user = EndUser.find(params[:id])
+    @end_user = current_end_user
   end
 end

@@ -1,2 +1,18 @@
-<h1>Public::Posts#search</h1>
-<p>Find me in app/views/public/posts/search.html.erb</p>
+<div class="container">
+	  <div class="row">
+      <% @posts.each do |post| %>
+      <div class="col-xs-3">
+  		  <table class="table table-bordered">
+          <tr>
+            <td><%= link_to post_path(post) do %>
+                  <%= image_tag post.get_image(100,100) %>
+                <% end %>
+            </td>
+            <td><%= post.title %>></td>
+            <td><%=post.end_user.name %></td>
+          </tr>
+        </table>
+      </div>
+      <% end %>
+    </div>
+</div>

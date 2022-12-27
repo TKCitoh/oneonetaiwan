@@ -3,8 +3,8 @@
 	  <div class="row">
 	    <div class="search-form">
         <%= form_with url: search_posts_path, method: :get, local: true do |f| %>
-        <%= f.text_field :keyword, value: @keyword %>
-        <%= f.submit "検索" %>
+          <%= f.text_field :keyword, placeholder: "投稿を検索する" %>
+          <%= f.submit "検索" %>
         <% end %>
       </div>
 		  <% @posts.each do |post| %>
@@ -16,7 +16,7 @@
                   <% end %>
               </td>
               <td><%= link_to post_path(post) do %>
-                  <%= video_tag post.get_video %>
+                  <%# video_tag post.get_video %>
                   <% end %>
               </td>
             </tr>
@@ -26,6 +26,20 @@
             <tr>
               <td><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></td>
             </tr>
+            <tr>
+              <td><% @tag_list.each do |list|%>
+                    <%= link_to list.name,search_tag_posts_path(tag_id: list.id) %>
+                    <%="(#{list.posts.count})" %>
+                  <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td><% @posts.each do |post| %>
+                    <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
+                  <% end %>
+              </td>
+            </tr>
+
           </table>
         </div>
       <% end %>

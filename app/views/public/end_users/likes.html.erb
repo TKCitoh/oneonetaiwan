@@ -14,9 +14,10 @@
             <td><%= link_to post.title, post_path(post) %></td>
           </tr>
           <tr>
-            <td><%= link_to post.user.name, user_path(post.user.id) %></td>
+            <td><%= link_to post.end_user.name, end_users_my_page_path %></td>
           </tr>
         </table>
       </div>
+      <% end %>
     </div>
 </div>

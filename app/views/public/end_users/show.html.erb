@@ -22,7 +22,7 @@
       <table class="table table-bordered">
         <tr>
           <td><%= link_to post_path(post.id) do %>
-              <%= image_tag post.get_image %>
+              <%= image_tag post.get_image(100,100) %>
               <% end %>
           </td>
         </tr>
@@ -39,6 +39,5 @@
     </div>
     <% end %>
 
-	<h2>いいね一覧</h2>
 	<%= link_to "一覧を見る", end_users_likes_path, class: "btn btn-primary" %>
 </div>
