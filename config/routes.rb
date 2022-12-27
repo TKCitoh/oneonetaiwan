@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
+      collection do
+        get 'search_tag'
+      end
       resources :comments, only: [:create, :destroy]
       resource :likes, only: [:create, :destroy]
    end
