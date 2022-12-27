@@ -1,22 +1,12 @@
 ja:
-  activerecord:
-    models:
-      end_user: ユーザー
-    attributes:
-       end_user:
-         name: 名前
-         email: メールアドレス
-         encrypted_password: パスワード
-
-    models:
-      post: 投稿
-    attributes:
-      post:
-        title: 題名
-        caption: 説明
-
-    models:
-      comment: コメント
-    attributes:
-      comment:
-        comment: コメント
+ activerecord:
+   attributes:
+     post:
+       title: 題名
+     caption: 説明
+       image: 投稿画像
+       video: 投稿動画
+  comment:
+     comment: コメント
+ end_user:
+        name: 名前
