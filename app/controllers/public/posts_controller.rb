@@ -32,16 +32,12 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.image = post_params[:image]
-    @post.video = post_params[:video]
-    @post.title = post_params[:title]
-    @post.caption = post_params[:caption]
+    @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
-    tag_list = params[:post][:name].split(',')
+    tag_list = params[:tag][:name].split(',')
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to post_path(current_end_user),notice:'投稿完了しました:)'
+      redirect_to post_path(@post.id),notice:'投稿完了しました:)'
     else
       render :new
     end

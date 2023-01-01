@@ -4,8 +4,12 @@
     <div class="col-12" style="height: 1000px">
       <div class="field mb-3">
         <%= image_tag @post.get_image(100,100) %>
-        <%# video_tag @post.get_video %>
       </div>
+        <% if @post.video.attached? %>
+      <div class="mb-3">
+        <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" size="300*150" controls></video>
+      </div>
+        <% end %>
       <div class="mb-3">
         <label>題名</label></br>
         <%= @post.title %>
@@ -16,7 +20,7 @@
       </div>
       <div class="mb-3">
         <label>ユーザー画像</label></br>
-
+        <%= image_tag @post.end_user.get_profile_image(100,100) %>
       </div>
       <div class="mb-3">
         <label>ユーザーネーム</label></br>
@@ -50,12 +54,13 @@
             <% end %>
           <% end %>
       </div>
-      <div>
+      <% unless current_end_user == EndUser.find(1) %>
         <%= form_with model: [@post, @comment] do |f| %>
           <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
-      </div>
+      <% else %>
+      <% end %>
       <div>
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name,search_tag_posts_path(tag_id: tag.id)%>

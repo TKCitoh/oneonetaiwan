@@ -30,14 +30,15 @@
     </div>
     <div class="mb-3">
       <label>★タグ（カンマ「,」で複数追加可能）</label></br>
-      <%= f.text_field :name %>
+      <%= text_field :tag, :name %>
     </div>
 
       <%= f.submit "投稿" ,class: "btn btn-primary" %>
 
     <% end %>
 
-    <div class="search-form">
+
+<div class="search-form">
   <input id="address" class="search-name" type="textbox" placeholder="現在地から近くの役所が検索できます">
   <input type="button" class="btn btn-outline-success" value="検索する" onclick="codeAddress()">
 </div>
@@ -100,3 +101,5 @@
     </div>
   </div>
 </div>
+
+

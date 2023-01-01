@@ -3,10 +3,10 @@ ja:
    attributes:
      post:
        title: 題名
-     caption: 説明
+       caption: 説明
        image: 投稿画像
        video: 投稿動画
-  comment:
-     comment: コメント
- end_user:
-        name: 名前
+     comment:
+       comment: コメント
+     end_user:
+       name: 名前

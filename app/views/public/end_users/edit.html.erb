@@ -11,6 +11,11 @@
       <%= f.text_field :email, autofocus: true %>
   　</div>
 
+  　<div class="field">
+      <%= f.label "アイコン画像" %>
+      <%= f.file_field :profile_image, autofocus: true %>
+  　</div>
+
     <%= f.submit "編集内容を保存",class: "btn btn-success" %>
 
   <% end %>

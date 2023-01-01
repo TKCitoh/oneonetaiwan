@@ -8,8 +8,8 @@
                   <%= image_tag post.get_image(100,100) %>
                 <% end %>
             </td>
-            <td><%= post.title %>></td>
-            <td><%=post.end_user.name %></td>
+            <td><%= link_to post.title, post_path(post) %></td>
+            <td><%= link_to post.end_user.name, end_users_my_page_path %></td>
           </tr>
         </table>
       </div>

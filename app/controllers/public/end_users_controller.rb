@@ -12,8 +12,11 @@ class Public::EndUsersController < ApplicationController
 
   def update
     end_user = current_end_user
-    end_user.update(end_user_params)
-    redirect_to end_users_my_page
+    if end_user.update!(end_user_params)
+    redirect_to end_users_my_page_path
+    else
+    render :edit
+    end
   end
 
   def unsubscribe
@@ -35,7 +38,7 @@ class Public::EndUsersController < ApplicationController
   private
 
   def end_user_params
-    params.require(:end_user).permit(:name, :email)
+    params.require(:end_user).permit(:name, :email, :profile_image)
   end
 
   def set_end_user

@@ -7,41 +7,47 @@
           <%= f.submit "検索" %>
         <% end %>
       </div>
-		  <% @posts.each do |post| %>
-  		  <div class="col-xs-3">
-  		    <table class="table table-bordered">
-            <tr>
-              <td><%= link_to post_path(post) do %>
-                  <%= image_tag post.get_image(100,100) %>
-                  <% end %>
-              </td>
-              <td><%= link_to post_path(post) do %>
-                  <%# video_tag post.get_video %>
-                  <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td><%= link_to post.title, post_path(post) %></td>
-            </tr>
-            <tr>
-              <td><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></td>
-            </tr>
-            <tr>
-              <td><% @tag_list.each do |list|%>
-                    <%= link_to list.name,search_tag_posts_path(tag_id: list.id) %>
-                    <%="(#{list.posts.count})" %>
-                  <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td><% @posts.each do |post| %>
-                    <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
-                  <% end %>
-              </td>
-            </tr>
-
-          </table>
+        <div class="text-right index-new">
+          <%= link_to new_post_path do %>
+            <button type="button" class="btn btn-primary">＋</button>
+          <% end %>
         </div>
-      <% end %>
+		    <% @posts.each do |post| %>
+    		  <div class="col-xs-3">
+    		    <table class="table table-bordered">
+              <tr>
+                <td><%= link_to post_path(post) do %>
+                    <%= image_tag post.get_image(100,100) %>
+                    <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= link_to post.title, post_path(post) %></td>
+              </tr>
+              <tr>
+                <td><%= link_to post.end_user.name, end_users_my_page_path %></td>
+              </tr>
+              <tr>
+                <td><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></td>
+              </tr>
+              <tr>
+                <td><%= image_tag post.end_user.get_profile_image(100,100) %></td>
+              </tr>
+              <tr>
+                <td><% @tag_list.each do |list|%>
+                      <%= link_to list.name,search_tag_posts_path(tag_id: list.id) %>
+                      <%="(#{list.posts.count})" %>
+                    <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><% @posts.each do |post| %>
+                      <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
+                    <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        <% end %>
     </div>
 </div>

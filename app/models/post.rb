@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :caption, presence: true
   validates :image, presence: true
-  #validates :video, presence: true
 
   belongs_to :end_user
   has_many   :likes, dependent: :destroy
@@ -20,13 +19,13 @@ class Post < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-      image.variant(resize_to_limit: [width, height]).processed
-    end
+    image.variant(resize_to_limit: [width, height]).processed
+  end
 
   def get_video(width, height)
     unless video.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      #video.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      video.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     video.variant(resize_to_limit: [width, height]).processed
   end
