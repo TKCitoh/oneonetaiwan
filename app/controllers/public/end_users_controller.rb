@@ -1,4 +1,4 @@
-class Public::EndUsersController < ApplicationController
+class Public::EndUsersController < Public::ApplicationController
   before_action :set_end_user, only: [:likes]
 
   def show

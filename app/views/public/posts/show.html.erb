@@ -6,8 +6,8 @@
         <%= image_tag @post.get_image(100,100) %>
       </div>
         <% if @post.video.attached? %>
-      <div class="mb-3">
-        <video src="<%= rails_blob_path(@post.video) %>" type="video/mp4" size="300*150" controls></video>
+      <div class="md-3">
+        <video src="<%= rails_blob_path(@post.video) %>" width="50%" type="video/mp4" controls></video>
       </div>
         <% end %>
       <div class="mb-3">

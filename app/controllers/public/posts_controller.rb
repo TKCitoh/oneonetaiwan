@@ -1,4 +1,4 @@
-class Public::PostsController < ApplicationController
+class Public::PostsController < Public::ApplicationController
   #ゲストのアクセス制限
   before_action :guest_check, except: [:index, :show]
 
@@ -68,7 +68,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :video, :title, :caption)
+    params.require(:post).permit(:video, :title, :caption, :image)
   end
 
   #ゲストのアクセス制限

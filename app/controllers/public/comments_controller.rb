@@ -1,4 +1,4 @@
-class Public::CommentsController < ApplicationController
+class Public::CommentsController < Public::ApplicationController
   def create
     post = Post.find(params[:post_id])
     comment = current_end_user.comments.new(comment_params)
@@ -12,7 +12,7 @@ class Public::CommentsController < ApplicationController
     comment.destroy
     redirect_to post_path(params[:post_id])
   end
-  
+
   private
 
   def post_params
