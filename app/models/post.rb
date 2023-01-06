@@ -15,19 +15,7 @@ class Post < ApplicationRecord
 
   #画像が設定されない場合、no_image.jpgを表示させるメソッド
   def get_image(width, height)
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
     image.variant(resize_to_limit: [width, height]).processed
-  end
-
-  def get_video(width, height)
-    unless video.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      video.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-    video.variant(resize_to_limit: [width, height]).processed
   end
 
   def self.search(search)

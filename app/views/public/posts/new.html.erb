@@ -32,16 +32,28 @@
       <label>★タグ（カンマ「,」で複数追加可能）</label></br>
       <%= text_field :tag, :name %>
     </div>
+    <div class="mb-3">
+      <label>★緯度</label></br>
+      <%= f.text_field :latitude, class: 'form-control', readonly: true %>
+    </div>
+    <div class="mb-3">
+      <label>★経度</label></br>
+      <%= f.text_field :longitude, class: 'form-control', readonly: true %>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <input type="button" class="btn btn-outline-success" value="検索する" onclick="codeAddress()">
+      </div>
+      <%= f.text_field :address, id: 'address', placeholder: '現在地から好きな場所を検索できます', class: 'form-control' %>
+    </div>
 
       <%= f.submit "投稿" ,class: "btn btn-primary" %>
 
     <% end %>
 
 
-<div class="search-form">
-  <input id="address" class="search-name" type="textbox" placeholder="現在地から近くの役所が検索できます">
-  <input type="button" class="btn btn-outline-success" value="検索する" onclick="codeAddress()">
-</div>
+
 
 <div id='map'></div>
 
@@ -76,9 +88,22 @@
         position:  latLng,
         map: map
       });
+
+      google.maps.event.addListener(map, 'click', clickEvent)
+
     }, function() {
         alert('位置情報取得に失敗しました');
       });
+  }
+
+  function clickEvent(event) {
+    marker.setMap(null);
+    marker = new google.maps.Marker({
+      position: event.latLng,
+      map: map
+    });
+    $('#post_latitude').val(event.latLng.lat());
+    $('#post_longitude').val(event.latLng.lng());
   }
 
   function codeAddress(){
@@ -87,10 +112,10 @@
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
-        let marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
+        // let marker = new google.maps.Marker({
+        //   map: map,
+        //   position: results[0].geometry.location
+        // });
       } else {
           alert('該当する結果がありませんでした：' + status);
       }

@@ -1,2 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.top-main-container {
+  background-image: url("../images/taipei-taiwan.jpg");
+  height: 800px;
+  background-size:cover;
+}

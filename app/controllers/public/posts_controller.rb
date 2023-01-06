@@ -7,7 +7,7 @@ class Public::PostsController < Public::ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     @tag_list=Tag.all
   end
 
@@ -35,6 +35,7 @@ class Public::PostsController < Public::ApplicationController
     @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
     tag_list = params[:tag][:name].split(',')
+    # map_list = params[:map][:latitude][:longitude]
     if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id),notice:'投稿完了しました:)'
@@ -68,12 +69,12 @@ class Public::PostsController < Public::ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:video, :title, :caption, :image)
+    params.require(:post).permit(:video, :title, :caption, :image, :address, :latitude, :longitude)
   end
 
   #ゲストのアクセス制限
   def guest_check
-    if current_end_user == EndUser.find(1)
+    if current_end_user.email == 'ttt@ttt.com'
       redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
     end
   end
