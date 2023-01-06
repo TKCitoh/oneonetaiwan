@@ -1,54 +1,47 @@
 <div class="container">
-  <h2>投稿一覧</h2>
-	  <div class="row">
-	    <div class="search-form">
-        <%= form_with url: search_posts_path, method: :get, local: true do |f| %>
-          <%= f.text_field :keyword, placeholder: "投稿を検索する" %>
-          <%= f.submit "検索" %>
-        <% end %>
-      </div>
-        <div class="text-right index-new">
-          <%= link_to new_post_path do %>
-            <button type="button" class="btn btn-primary">＋</button>
+  <div class="search-form text-center">
+    <%= form_with url: search_posts_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, placeholder: "投稿を検索する" %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+  <div class="text-right index-new">
+    <%= link_to new_post_path do %>
+      <button type="button" class="btn btn-primary">＋</button>
+    <% end %>
+  </div>
+    <% @posts.each do |post| %>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+	      <div class="card w-75 mx-auto mt-5 shadow-lg">
+          <%= link_to post_path(post) do %>
+            <%= image_tag post.get_image(100,100), class:"card-img-top"; %>
           <% end %>
-        </div>
-		    <% @posts.each do |post| %>
-    		  <div class="col-xs-3">
-    		    <table class="table table-bordered">
-              <tr>
-                <td><%= link_to post_path(post) do %>
-                    <%= image_tag post.get_image(100,100) %>
-                    <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td><%= link_to post.title, post_path(post) %></td>
-              </tr>
-              <tr>
-                <td><%= link_to post.end_user.name, end_users_my_page_path %></td>
-              </tr>
-              <tr>
-                <td><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></td>
-              </tr>
-              <tr>
-                <td><%= image_tag post.end_user.get_profile_image(100,100) %></td>
-              </tr>
-              <tr>
-                <td><% @tag_list.each do |list|%>
-                      <%= link_to list.name,search_tag_posts_path(tag_id: list.id) %>
-                      <%="(#{list.posts.count})" %>
-                    <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td><% @posts.each do |post| %>
-                      <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
-                    <% end %>
-                </td>
-              </tr>
-            </table>
+          <div class="card body">
+            <div class="row">
+              <div class="col-5">
+                <p class="text-center"><%= image_tag post.end_user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
+              </div>
+              <div class="col-6">
+                <br>
+                <p><%= link_to post.title, post_path(post) %></p>
+                <p><%= link_to post.end_user.name, end_users_my_page_path %></p>
+                <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+                <p><% @tag_list.each do |list|%></p>
+                    <%= link_to list.name,search_tag_posts_path(tag_id: list.id) %>
+                    <%="(#{list.posts.count})" %>
+                  <% end %>
+                </p>
+                <p><% @posts.each do |post| %>
+                    <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
+                  <% end %>
+                </p>
+              </div>
           </div>
-        <% end %>
-        <%= paginate @posts %>
+        </div>
+      </div>
     </div>
+  </div>
+    <% end %>
+    <%= paginate @posts %>
 </div>
