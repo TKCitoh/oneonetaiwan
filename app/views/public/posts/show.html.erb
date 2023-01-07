@@ -1,36 +1,28 @@
 <div class="container">
-  <h2>投稿詳細画面</h2>
   <div class="row">
     <div class="col-12" style="height: 1000px">
-      <div class="field mb-3">
-        <%= image_tag @post.get_image(100,100) %>
+      <div class="title01 mb-3">
+        <%= image_tag @post.get_image(500,500) %>
       </div>
-        <% if @post.video.attached? %>
-      <div class="md-3">
+      <% if @post.video.attached? %>
+      <div class="mb-3">
         <video src="<%= rails_blob_path(@post.video) %>" width="50%" type="video/mp4" controls></video>
       </div>
+      <% end %>
+      <div class="tag mb-3">
+        <% @post_tags.each do |tag| %>
+          <%= link_to tag.name,search_tag_posts_path(tag_id: tag.id), class: 'text-white' %>
+          <%="(#{tag.posts.count})" %>
         <% end %>
-      <div class="mb-3">
-        <label>題名</label></br>
-        <%= @post.title %>
+      </div>
+      <div class="show-title mb-3">
+        <h3><%= @post.title %></h3>
       </div>
       <div class="mb-3">
-        <label>説明</label></br>
         <%= @post.caption %>
       </div>
-      <div class="mb-3">
-        <label>ユーザー画像</label></br>
-        <%= image_tag @post.end_user.get_profile_image(100,100) %>
-      </div>
-      <div class="mb-3">
-        <label>ユーザーネーム</label></br>
-        <%= @post.end_user.name %>
-      </div>
-      <div class="mb-3">
-        <label>投稿日</label></br>
-        <%= @post.created_at.strftime('%Y/%m/%d') %>
-      </div>
-      <div class="mb-3">
+
+       <div class="mb-3">
         <% if @post.liked_by?(current_end_user) %>
           <p><%= link_to post_likes_path(@post), method: :delete do %>
               ♥<%= @post.likes.count %> いいね
@@ -61,13 +53,18 @@
         <% end %>
       <% else %>
       <% end %>
-      <div>
-        <% @post_tags.each do |tag| %>
-          <%= link_to tag.name,search_tag_posts_path(tag_id: tag.id)%>
-          <%="(#{tag.posts.count})" %>
-        <% end %>
+      <hr class="hr-show">
+      <div class="mb-3">
+        <%= image_tag @post.end_user.get_profile_image(100,100) %>
+        <label>ユーザー名：<%= @post.end_user.name %></label>
       </div>
-      <%= link_to "編集する", edit_post_path, class: "btn btn-success"%>
+      <div class="mb-3">
+        <label>投稿日</label></br>
+        <%= @post.created_at.strftime('%Y/%m/%d') %>
+      </div>
+      <div class="text-center">
+        <%= link_to "編集する", edit_post_path, class: "btn btn-success text-center"%>
+      </div>
     </div>
   </div>
 </div>

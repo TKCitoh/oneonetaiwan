@@ -1,8 +1,66 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+///public css
+
 .top-main-container {
   background-image: url("../images/taipei-taiwan.jpg");
   height: 800px;
   background-size:cover;
+}
+
+.title01 {
+  margin-top: 100px;
+}
+
+.mypage {
+  margin-top: 50px;
+}
+
+.about-container {
+  background-image: url("../images/about.jpg");
+  background-color:rgba(255,255,255,0.7);
+  background-blend-mode:lighten;
+  height: 800px;
+  background-size:cover;
+}
+
+.tag {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem 1rem 4rem;
+  color: #fff;
+  border-radius: 100vh 0 0 100vh;
+  background: #fa4141;
+}
+
+.tag:before {
+  position: absolute;
+  top: calc(50% - 7px);
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  content: '';
+  border-radius: 50%;
+  background: #fff;
+}
+
+.show-title {
+  margin-top: 30px;
+  padding: 1rem 1rem;
+  border-bottom: 6px double #000;
+  background: #f4f4f4;
+}
+
+.hr-show {
+  border-top: 1px solid #000;
+}
+
+///admin css
+
+.admin-title {
+  margin-top: 30px;
+  padding: 1rem 2rem;
+  background: #f4f4f4;
+  width: 50%;
 }

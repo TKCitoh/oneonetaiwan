@@ -13,8 +13,11 @@ class Admin::EndUsersController < Admin::ApplicationController
 
   def update
     @end_user = EndUser.find(params[:id])
-    @end_user.update(end_user_params)
-    redirect_to admin_end_user_path(end_user)
+    if @end_user.update(end_user_params)
+      redirect_to admin_end_user_path(@end_user)
+    else
+      render :edit
+    end
   end
 
   private
