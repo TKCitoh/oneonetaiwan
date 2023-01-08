@@ -1,38 +1,48 @@
-<div class="container">
-  <h2>投稿編集画面</h2>
+<div class="container mt-5">
+
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
     <%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
-      <div class="col-12" style="height: 1000px">
-        <div class="field">
-          <%= f.label "画像" %>
-          <%= f.file_field :image, accept: '.jpeg, .jpg, .gif, .png, .bmp' %>
-        </div>
-
-        <div class="field">
-          <%= f.label "動画" %>
-          <%= f.file_field :video, accept: '.mp4, .m4v, .avi, .mov' %>
-        </div>
-
-        <div class="field">
-          <%= f.label "題名" %>
-          <%= f.text_field :title, autofocus: true %>
-        </div>
-
-        <div class="field">
-          <%= f.label "説明" %>
-          <%= f.text_area :caption, autofocus: true %>
-        </div>
-
-        <div class="field">
-          <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
-           <%= f.text_field :name, value: @tag_list, class: "form-control"%>
-        </div>
-
-        <%= f.submit "編集内容を保存",class: "btn btn-success" %>
-
-        <% end %>
-
-        <% if @post.end_user == current_end_user %>
-          <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-        <% end %>
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3">
+        <%= f.label :image, "画像" %>
+        <%= f.file_field :image, autofocus: true, accept: '.jpeg, .jpg, .gif, .png, .bmp', class: "form-control" %>
+      </div>
     </div>
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3">
+        <%= f.label :video, "動画" %>
+        <%= f.file_field :video, autofocus: true, accept: '.mp4, .m4v, .avi, .mov', class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3">
+        <%= f.label :title, "題名" %>
+        <%= f.text_field :title, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <%= f.label :caption, "説明" %>
+        <%= f.text_area :caption, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <%= f.label :name, "タグ (,で区切ると複数タグ登録できます)" %>
+        <%= f.text_field :name, value: @tag_list, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <%= f.submit "編集内容を保存",class: "btn btn-success" %>
+    <% end %>
+    <br>
+    <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 </div>

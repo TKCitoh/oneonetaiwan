@@ -14,7 +14,7 @@ class Public::EndUsersController < Public::ApplicationController
   def update
     @end_user = current_end_user
     if @end_user.update(end_user_params)
-    redirect_to end_users_my_page_path
+    redirect_to end_users_my_page_path, notice: '更新完了しました。:)'
     else
     render :edit
     end
@@ -28,7 +28,7 @@ class Public::EndUsersController < Public::ApplicationController
     end_user = current_end_user
     end_user.update(is_deleted :true)
     reset_session
-    redirect_to root_path
+    redirect_to root_path, notice: '退会しました。:)'
   end
 
   def likes

@@ -13,13 +13,18 @@ class Public::PostsController < Public::ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @tag_list=@post.tags.pluck(:name).join(',')
+    if @post.end_user == current_end_user
+      render :edit
+    else
+      redirect_to post_path(@post)
+    end
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
-    if @post.update!(post_params)
+    if @post.update(post_params)
         @old_relations = PostTag.where(post_id: @post.id)
           @old_relations.each do |relation|
             relation.delete
@@ -35,10 +40,9 @@ class Public::PostsController < Public::ApplicationController
     @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
     tag_list = params[:tag][:name].split(',')
-    # map_list = params[:map][:latitude][:longitude]
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to post_path(@post.id),notice:'投稿完了しました:)'
+      redirect_to post_path(@post.id), notice:'投稿完了しました:)'
     else
       render :new
     end
@@ -53,7 +57,7 @@ class Public::PostsController < Public::ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿を削除しました。:)'
   end
 
   def search

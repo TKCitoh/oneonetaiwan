@@ -3,8 +3,11 @@ class Post < ApplicationRecord
   has_one_attached :video
 
   validates :title, presence: true
-  validates :caption, presence: true
+  validates :caption, presence: true, length: { maximum: 50 }
   validates :image, presence: true
+  validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
   belongs_to :end_user
   has_many   :likes, dependent: :destroy
@@ -13,7 +16,6 @@ class Post < ApplicationRecord
   has_many   :post_tags, dependent: :destroy
   has_many   :tags, through: :post_tags
 
-  #画像が設定されない場合、no_image.jpgを表示させるメソッド
   def get_image(width, height)
     image.variant(resize_to_limit: [width, height]).processed
   end

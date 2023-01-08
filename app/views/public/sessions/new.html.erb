@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>ログイン</h2>
+  <h2 class="admin-title">ログイン</h2>
     <h3>会員の方はこちらからログイン</h3>
 
     <%= form_with model: @end_user, url: end_user_session_path do |f| %>
@@ -24,6 +24,7 @@
       <%= f.submit "ログイン",class: "btn btn-primary" %>
     </div>
     <% end %>
+    <br>
   <%# この下にパスワード再設定機能実装するかも %>
 
     <h3>会員登録がお済みでない方</h3>

@@ -1,6 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-12" style="height: 1000px">
+      <div class="mt-5">
+      <% if @error_comment.present? %>
+        <div id="error_explanation">
+          <h2><%= @error_comment.errors.count %>件のエラーが発生しました。</h2>
+          <ul>
+            <% @error_comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      </div>
+
       <div class="title01 mb-3">
         <%= image_tag @post.get_image(500,500) %>
       </div>
@@ -9,12 +22,13 @@
         <video src="<%= rails_blob_path(@post.video) %>" width="50%" type="video/mp4" controls></video>
       </div>
       <% end %>
+      <% @post_tags.each do |tag| %>
       <div class="tag mb-3">
-        <% @post_tags.each do |tag| %>
-          <%= link_to tag.name,search_tag_posts_path(tag_id: tag.id), class: 'text-white' %>
-          <%="(#{tag.posts.count})" %>
-        <% end %>
+        <%= link_to tag.name,search_tag_posts_path(tag_id: tag.id), class: 'text-white' %>
+        <%="(#{tag.posts.count})" %>
       </div>
+      <% end %>
+
       <div class="show-title mb-3">
         <h3><%= @post.title %></h3>
       </div>
@@ -47,12 +61,18 @@
         <div class="mb-3">
           <p>コメント件数：<%= @post.comments.count %></p>
             <% @post.comments.each do |comment| %>
-          <p><%= image_tag comment.end_user.get_profile_image(100,100) %></p>
-              <%= comment.end_user.name %>
-              <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+          <p><%= image_tag comment.end_user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
+          <p><%= comment.end_user.name %></p>
+          <p><%= comment.comment %>
+              <!--コメントしたユーザーがログイン中のユーザーの時-->
               <% if comment.end_user == current_end_user %>
-                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+              <!--投稿したユーザーがログイン中のユーザーの時-->
+              <% elsif @post.end_user == current_end_user %>
+                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
               <% end %>
+          </p>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
             <% end %>
         </div>
 
@@ -66,7 +86,9 @@
           <%= @post.created_at.strftime('%Y/%m/%d') %>
         </div>
         <div class="text-center">
-          <%= link_to "編集する", edit_post_path, class: "btn btn-success text-center"%>
+          <% if @post.end_user == current_end_user %>
+            <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success text-center"%>
+          <% end %>
         </div>
     </div>
   </div>
