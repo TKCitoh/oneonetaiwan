@@ -22,49 +22,52 @@
         <%= @post.caption %>
       </div>
 
-       <div class="mb-3">
-        <% if @post.liked_by?(current_end_user) %>
-          <p><%= link_to post_likes_path(@post), method: :delete do %>
+      <% unless current_end_user.email == 'ttt@ttt.com' %>
+        <div class="mb-3">
+          <% if @post.liked_by?(current_end_user) %>
+            <p><%= link_to post_likes_path(@post), method: :delete do %>
               ♥<%= @post.likes.count %> いいね
               <% end %>
-          </p>
-        <% else %>
-          <p><%= link_to post_likes_path(@post), method: :post do %>
+            </p>
+          <% else %>
+            <p><%= link_to post_likes_path(@post), method: :post do %>
               ♡<%= @post.likes.count %> いいね
               <% end %>
-          </p>
-        <% end %>
-      </div>
-      <div class="mb-3">
-        <p>コメント件数：<%= @post.comments.count %></p>
-          <% @post.comments.each do |comment| %>
-        <p><%= image_tag comment.end_user.get_profile_image(100,100) %></p>
-            <%= comment.end_user.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <% if comment.end_user == current_end_user %>
-              <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-            <% end %>
+            </p>
           <% end %>
-      </div>
-      <% unless current_end_user == EndUser.find(1) %>
-        <%= form_with model: [@post, @comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+        </div>
+        <div class="mb-3">
+          <%= form_with model: [@post, @comment] do |f| %>
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
       <% else %>
       <% end %>
-      <hr class="hr-show">
-      <div class="mb-3">
-        <%= image_tag @post.end_user.get_profile_image(100,100) %>
-        <label>ユーザー名：<%= @post.end_user.name %></label>
-      </div>
-      <div class="mb-3">
-        <label>投稿日</label></br>
-        <%= @post.created_at.strftime('%Y/%m/%d') %>
-      </div>
-      <div class="text-center">
-        <%= link_to "編集する", edit_post_path, class: "btn btn-success text-center"%>
-      </div>
+        <div class="mb-3">
+          <p>コメント件数：<%= @post.comments.count %></p>
+            <% @post.comments.each do |comment| %>
+          <p><%= image_tag comment.end_user.get_profile_image(100,100) %></p>
+              <%= comment.end_user.name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+              <% if comment.end_user == current_end_user %>
+                <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+              <% end %>
+            <% end %>
+        </div>
+
+        <hr class="hr-show">
+        <div class="mb-3">
+          <%= image_tag @post.end_user.get_profile_image(100,100) %>
+          <label>ユーザー名：<%= @post.end_user.name %></label>
+        </div>
+        <div class="mb-3">
+          <label>投稿日</label></br>
+          <%= @post.created_at.strftime('%Y/%m/%d') %>
+        </div>
+        <div class="text-center">
+          <%= link_to "編集する", edit_post_path, class: "btn btn-success text-center"%>
+        </div>
     </div>
   </div>
 </div>

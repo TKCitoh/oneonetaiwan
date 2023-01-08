@@ -1,25 +1,49 @@
-<div class = "container">
-  <h2>会員情報編集</h2>
-  <%= form_with model: @end_user, url: end_users_information_path, method: :patch do |f| %>
-    <div class="field">
-      <%= f.label "名前" %>
-      <%= f.text_field :name, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label "メールアドレス" %>
-      <%= f.text_field :email, autofocus: true %>
-  　</div>
-
-  　<div class="field">
-      <%= f.label "アイコン画像" %>
-      <%= f.file_field :profile_image, autofocus: true %>
-  　</div>
-
-    <%= f.submit "編集内容を保存",class: "btn btn-success" %>
-
+<div class="container mt-5">
+  
+  <% if @end_user.errors.any? %>
+    <%= @end_user.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @end_user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
+  
+    <%= form_with model: @end_user, url: end_users_information_path, method: :patch do |f| %>
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3">
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.text_field :email, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <%= f.label :profile_image, "アイコン画像" %>
+        <%= f.file_field :profile_image, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>
+    <% end %>
+    <br>
+    <%= button_to "退会する", end_users_unsubscribe_path, method: :get, class: "btn btn-danger" %>
 
-  <%= button_to "退会する", end_users_unsubscribe_path, method: :get, class: "btn btn-danger" %>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+

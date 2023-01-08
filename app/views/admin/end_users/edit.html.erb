@@ -10,7 +10,7 @@
         </ul>
       <% end %>
 
-      <%= form_with model: @end_user, url: admin_end_user_path, method: :patch do |f| %>
+      <%= form_with model: @end_user, url: admin_end_user_path(@end_user), method: :patch do |f| %>
       <div class="form-group row">
         <label for="staticID" class="col-sm-2 col-form-label">ユーザーID</label>
         <div class="col-sm-10">
@@ -38,6 +38,5 @@
       </div>
       <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>
       <% end %>
-    </form>
 
   </div>

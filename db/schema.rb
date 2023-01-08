@@ -81,25 +81,21 @@ ActiveRecord::Schema.define(version: 2022_12_25_141337) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "maps", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.float "latitude", null: false
-    t.float "longitude", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "post_tags", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.string "title", null: false
     t.text "caption", null: false
+    t.string "address", null: false
+    t.float "latitude", null: false 
+    t.float "longitude", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

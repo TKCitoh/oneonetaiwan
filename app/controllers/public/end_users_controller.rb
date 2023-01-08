@@ -1,5 +1,6 @@
 class Public::EndUsersController < Public::ApplicationController
   before_action :set_end_user, only: [:likes]
+  before_action :guest_check
 
   def show
     @end_user = current_end_user
@@ -11,8 +12,8 @@ class Public::EndUsersController < Public::ApplicationController
   end
 
   def update
-    end_user = current_end_user
-    if end_user.update!(end_user_params)
+    @end_user = current_end_user
+    if @end_user.update(end_user_params)
     redirect_to end_users_my_page_path
     else
     render :edit
@@ -43,5 +44,11 @@ class Public::EndUsersController < Public::ApplicationController
 
   def set_end_user
     @end_user = current_end_user
+  end
+
+  def guest_check
+    if current_end_user.email == 'ttt@ttt.com'
+      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+    end
   end
 end
