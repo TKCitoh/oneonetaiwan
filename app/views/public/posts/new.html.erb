@@ -1,19 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12" style="height: 1000px">
-      <br>
-
-    <% if @post.errors.any? %>
-      <%= @post.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @post.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-    <% end %>
-
     <%= form_with model: @post, local: true do |f| %>
-    <div class="field mb-3">
+    <!--エラーメッセージ：変数modelにf.objectを渡す-->
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="field mb-3 mt-5">
       <label>★画像のアップロード</label></br>
       <%= f.file_field :image, accept: '.jpeg, .jpg, .gif, .png, .bmp' %>
     </div>
@@ -34,11 +25,11 @@
       <%= text_field :tag, :name %>
     </div>
     <div class="mb-3">
-      <label>★緯度</label></br>
+      <label>★緯度（地図で選択すると自動入力）</label></br>
       <%= f.text_field :latitude, class: 'form-control', readonly: true %>
     </div>
     <div class="mb-3">
-      <label>★経度</label></br>
+      <label>★経度（地図で選択すると自動入力）</label></br>
       <%= f.text_field :longitude, class: 'form-control', readonly: true %>
     </div>
 

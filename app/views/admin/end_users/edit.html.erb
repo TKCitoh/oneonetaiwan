@@ -1,16 +1,8 @@
 <div class="container">
   <h2 class="admin-title"><%= @end_user.name %>さんのユーザー情報編集</h2>
 
-      <% if @end_user.errors.any? %>
-        <%= @end_user.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @end_user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
-
       <%= form_with model: @end_user, url: admin_end_user_path(@end_user), method: :patch do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <div class="form-group row">
         <label for="staticID" class="col-sm-2 col-form-label">ユーザーID</label>
         <div class="col-sm-10">

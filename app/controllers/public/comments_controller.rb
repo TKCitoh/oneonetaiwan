@@ -4,7 +4,7 @@ class Public::CommentsController < Public::ApplicationController
     comment = current_end_user.comments.new(comment_params)
     comment.post_id = post.id
     if comment.save
-      redirect_to post_path(post), notice: 'コメントを投稿しました。:)'
+      redirect_to post_path(post), notice: "コメントを投稿しました。"
     else
       @error_comment = comment
       @post = Post.find(params[:post_id])
@@ -17,7 +17,7 @@ class Public::CommentsController < Public::ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
-    redirect_to post_path(params[:post_id]), notice: 'コメントを削除しました。:)'
+    redirect_to post_path(params[:post_id]), notice: "コメントを削除しました。"
   end
 
   private

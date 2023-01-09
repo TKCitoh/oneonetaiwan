@@ -28,7 +28,7 @@ class Public::EndUsersController < Public::ApplicationController
     end_user = current_end_user
     end_user.update(is_deleted :true)
     reset_session
-    redirect_to root_path, notice: '退会しました。:)'
+    redirect_to root_path, alart: '退会しました。:)'
   end
 
   def likes

@@ -30,7 +30,7 @@ class Public::PostsController < Public::ApplicationController
             relation.delete
           end
         @post.save_tag(tag_list)
-        redirect_to post_path(@post.id), notice: '更新完了しました:)'
+        redirect_to post_path(@post.id), notice: "更新完了しました。"
     else
       render:edit
     end
@@ -42,7 +42,7 @@ class Public::PostsController < Public::ApplicationController
     tag_list = params[:tag][:name].split(',')
     if @post.save
       @post.save_tag(tag_list)
-      redirect_to post_path(@post.id), notice:'投稿完了しました:)'
+      redirect_to post_path(@post.id), notice: "投稿完了しました。"
     else
       render :new
     end
@@ -57,7 +57,7 @@ class Public::PostsController < Public::ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: '投稿を削除しました。:)'
+    redirect_to posts_path, alart: "投稿を削除しました。"
   end
 
   def search
@@ -78,7 +78,7 @@ class Public::PostsController < Public::ApplicationController
 
   #ゲストのアクセス制限
   def guest_check
-    if current_end_user.email == 'ttt@ttt.com'
+    if current_end_user.email == "ttt@ttt.com"
       redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
     end
   end
