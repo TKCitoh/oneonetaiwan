@@ -1,6 +1,7 @@
 class Admin::PostsController < Admin::ApplicationController
   def index
-    @posts = Post.page(params[:page])
+    end_user_id = params[:end_user_id]
+    @posts = Post.where(end_user_id: end_user_id).page(params[:page])
   end
 
   def destroy

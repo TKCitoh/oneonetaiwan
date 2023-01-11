@@ -7,7 +7,8 @@ class Public::PostsController < Public::ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page])
+    delete_end_users = EndUser.where(is_deleted: true)
+    @posts = Post.where.not(end_user_id: delete_end_users.ids).page(params[:page])
     @tag_list=Tag.all
   end
 
@@ -51,6 +52,8 @@ class Public::PostsController < Public::ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    delete_end_users = EndUser.where(is_deleted: true)
+    @comments = @post.comments.where.not(end_user_id: delete_end_users.ids)
     @post_tags = @post.tags
   end
 

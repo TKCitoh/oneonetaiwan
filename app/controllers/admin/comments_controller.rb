@@ -1,6 +1,7 @@
 class Admin::CommentsController < Admin::ApplicationController
   def index
-    @comments = Comment.all
+    end_user_id = params[:end_user_id]
+    @comments = Comment.where(end_user_id: end_user_id)
   end
 
   def destroy

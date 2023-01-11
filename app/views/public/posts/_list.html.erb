@@ -18,7 +18,6 @@
                 <% else %>
                   <p><%= post.end_user.name %></p>
                 <% end %>
-                <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
                 <p>
                   <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
                 </p>

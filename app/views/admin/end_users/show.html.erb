@@ -42,7 +42,7 @@
 	    <tbody>
 	      <% @end_user.comments.each do |comment| %>
 	    	<tr>
-          <td><%= link_to admin_comments_path do %>
+          <td><%= link_to admin_comments_path(end_user_id: @end_user.id) do %>
               <%= comment.id %></td>
               <% end %>
           <td><%= comment.comment %></td>
@@ -52,7 +52,7 @@
 	   </table>
 
 	   <h2 class="admin-title">
-	     <%= link_to @end_user.name, admin_posts_path %>さんの投稿一覧
+	     <%= link_to @end_user.name, admin_posts_path(end_user_id: @end_user.id) %>さんの投稿一覧
 	   </h2>
 
 

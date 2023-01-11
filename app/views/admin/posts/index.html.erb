@@ -22,7 +22,7 @@
                 <i class="fa-sharp fa-solid fa-tags"><%= post.tags.map(&:name).join(', ') %></i>
               </p>
               <p>
-                <%= link_to "削除", post_path(post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+                <%= link_to "削除", admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
               </p>
             </div>
           </div>
