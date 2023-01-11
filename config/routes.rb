@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'posts/index'
+    get 'posts/destroy'
+  end
  # ユーザー
  # URL /customers/sign_in ...
  # 顧客はパスワードの変更ができるようにするため、skipの設定はしない
@@ -51,6 +55,7 @@ Rails.application.routes.draw do
  namespace :admin do
    resources :end_users, only: [:index, :show, :edit, :update]
    resources :comments,  only: [:index, :destroy]
+   resources :posts,     only: [:index, :destroy]
  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
