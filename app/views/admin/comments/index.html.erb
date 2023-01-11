@@ -15,7 +15,9 @@
 	    	<tr>
           <td><%= comment.id %></td>
           <td><%= comment.end_user.id %></td>
-          <td><%= comment.end_user.name %></td>
+          <td><%= link_to admin_end_user_path(comment.end_user) do %>
+              <%= comment.end_user.name %></td>
+              <% end %>
           <td><%= comment.comment %></td>
           <td><%= link_to "削除する", admin_comment_path(comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
         </tr>

@@ -17,6 +17,8 @@
       <div class="col-sm-6">
         <%= f.label :profile_image, "アイコン画像" %>
         <%= f.file_field :profile_image, autofocus: true, class: "form-control" %>
+        <br>
+        <%= image_tag @end_user.get_profile_image(100,100) %>
       </div>
     </div>
     <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>

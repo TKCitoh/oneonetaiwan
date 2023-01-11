@@ -13,17 +13,17 @@ class Public::PostsController < Public::ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
     if @post.end_user == current_end_user
       render :edit
     else
       redirect_to post_path(@post)
     end
-    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
-    tag_list = params[:post][:name].split(',')
+    tag_list = params[:tag_name].split(',')
     if @post.update(post_params)
         @old_relations = PostTag.where(post_id: @post.id)
           @old_relations.each do |relation|
@@ -61,7 +61,7 @@ class Public::PostsController < Public::ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword]).page(params[:page])
   end
 
   def search_tag

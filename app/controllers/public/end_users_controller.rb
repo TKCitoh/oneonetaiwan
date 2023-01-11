@@ -14,7 +14,7 @@ class Public::EndUsersController < Public::ApplicationController
   def update
     @end_user = current_end_user
     if @end_user.update(end_user_params)
-    redirect_to end_users_my_page_path, notice: '更新完了しました。:)'
+    redirect_to end_users_my_page_path, notice: "更新完了しました。"
     else
     render :edit
     end
@@ -26,14 +26,14 @@ class Public::EndUsersController < Public::ApplicationController
 
   def withdraw
     end_user = current_end_user
-    end_user.update(is_deleted :true)
+    end_user.update(is_deleted: true)
     reset_session
-    redirect_to root_path, alart: '退会しました。:)'
+    redirect_to root_path, alart: "退会しました。"
   end
 
   def likes
-    likes = Like.where(end_user_id: @end_user.id).pluck(:post_id)
-    @like_posts = Post.find(likes)
+    post_ids = Like.where(end_user_id: @end_user.id).pluck(:post_id)
+    @posts = Post.where(id: post_ids).page(params[:page])
   end
 
   private
@@ -48,7 +48,7 @@ class Public::EndUsersController < Public::ApplicationController
 
   def guest_check
     if current_end_user.email == 'ttt@ttt.com'
-      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+      redirect_to root_path, notice: "このページを見るには会員登録が必要です。"
     end
   end
 end

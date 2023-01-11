@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <header class="shadow-lg">
+    <header class="head shadow-lg">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/">
@@ -26,64 +26,64 @@
           <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
             <li class="nav-item">
-              <%= link_to admin_end_users_path, class: 'nav-link text-dark' do %>
+              <%= link_to admin_end_users_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-users"></i> 会員一覧
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to  admin_comments_path, class: 'nav-link text-dark' do %>
+              <%= link_to  admin_comments_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-book-open"></i> コメント一覧
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-white' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
           <% elsif end_user_signed_in? %>
             <li class="nav-item">
-              <%= link_to end_users_my_page_path, class: 'nav-link text-dark' do %>
+              <%= link_to end_users_my_page_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-home"></i> マイページ
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to about_path, class: 'nav-link text-dark' do %>
+              <%= link_to about_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-users"></i> About
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to  posts_path, class: 'nav-link text-dark' do %>
+              <%= link_to  posts_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-book-open"></i> 投稿を見る
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+              <%= link_to destroy_end_user_session_path, method: :delete, class: 'nav-link text-white' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to end_users_guest_sign_in_path, class: 'nav-link text-dark' do %>
+              <%= link_to end_users_guest_sign_in_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-sign-in-alt"></i> ゲストログイン（閲覧用）
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to about_path, class: 'nav-link text-dark' do %>
+              <%= link_to about_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-home"></i> About
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to posts_path, class: 'nav-link text-dark' do %>
+              <%= link_to posts_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-link"></i> 投稿を見る
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_end_user_registration_path, class: 'nav-link text-dark' do %>
+              <%= link_to new_end_user_registration_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-user-plus"></i> 新規登録
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_end_user_session_path, class: 'nav-link text-dark' do %>
+              <%= link_to new_end_user_session_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-sign-in-alt"></i> ログイン
               <% end %>
             </li>
@@ -95,9 +95,9 @@
     </header>
 
     <main>
-    <%# フラッシュメッセージを共通テンプレート化 %>
-    <%= render 'layouts/flash' %>
-    <%= yield %>
+      <%# フラッシュメッセージを共通テンプレート化 %>
+      <%= render 'layouts/flash' %>
+      <%= yield %>
     </main>
 
     <footer>

@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :caption, presence: true, length: { maximum: 50 }
   validates :image, presence: true
-  validates :address, presence: true
   validates :latitude, presence: true
   validates :longitude, presence: true
 

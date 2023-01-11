@@ -13,8 +13,12 @@
   margin-top: 100px;
 }
 
-.mypage {
-  margin-top: 50px;
+.public-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 1rem 2rem;
+  background: #f4f4f4;
+  width: 50%;
 }
 
 .about-container {
@@ -54,6 +58,10 @@
 
 .hr-show {
   border-top: 1px solid #000;
+}
+
+.head {
+  background-color: #777777;
 }
 
 ///admin css

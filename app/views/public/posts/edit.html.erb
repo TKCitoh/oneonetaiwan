@@ -5,12 +5,20 @@
       <div class="col-sm-6 mb-3">
         <%= f.label :image, "画像" %>
         <%= f.file_field :image, autofocus: true, accept: '.jpeg, .jpg, .gif, .png, .bmp', class: "form-control" %>
+        <br>
+        <% if @post.image.attached? %>
+          <%= image_tag @post.get_image(200,200) %>
+        <% end %>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-6 mb-3">
         <%= f.label :video, "動画" %>
         <%= f.file_field :video, autofocus: true, accept: '.mp4, .m4v, .avi, .mov', class: "form-control" %>
+        <br>
+        <% if @post.video.attached? %>
+          <video src="<%= rails_blob_path(@post.video) %>" width="50%" type="video/mp4" controls></video>
+        <% end %>
       </div>
     </div>
     <div class="form-group row">
@@ -28,7 +36,7 @@
     <div class="form-group row">
       <div class="col-sm-6">
         <%= f.label :name, "タグ (,で区切ると複数タグ登録できます)" %>
-        <%= f.text_field :name, value: @tag_list, autofocus: true, class: "form-control" %>
+        <%= text_field_tag :tag_name, @tag_list, class: "form-control"  %>
       </div>
     </div>
 
