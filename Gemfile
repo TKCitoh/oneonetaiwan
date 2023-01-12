@@ -8,7 +8,7 @@ gem "rails", "~> 6.1.7"
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
-gem "puma", "~> 5.0"
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem "sass-rails", ">= 6"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -58,22 +58,21 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise"
 
-gem "kaminari","~> 1.2.1"
+gem "kaminari", "~> 1.2.1"
 
 # 日本語化
 gem "rails-i18n"
 
 # 環境変数
 gem "dotenv-rails"
+group :production do
+  gem 'mysql2'
+end
 
 # map関連
 gem "gmaps4rails"
 gem "geocoder"
 gem "gon"
-
-gem "net-smtp"
-gem "net-pop"
-gem "net-imap"
 
 gem "rubocop", require: false
 gem "rubocop-performance", require: false
@@ -81,3 +80,7 @@ gem "rubocop-rails", require: false
 gem "rubocop-minitest", require: false
 gem "rubocop-packaging", require: false
 gem "rubocop-rspec"
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
