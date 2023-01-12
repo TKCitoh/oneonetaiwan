@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
-  #ゲストユーザーを削除できないようにする記述
+  # ゲストユーザーを削除できないようにする記述
   before_action :ensure_normal_end_user, only: :destroy
 
   def ensure_normal_end_user
-    if resource.email == 'ttt@ttt.com'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    if resource.email == "ttt@ttt.com"
+      redirect_to root_path, alert: "ゲストユーザーは削除できません。"
     end
   end
   # before_action :configure_sign_up_params, only: [:create]
@@ -74,5 +74,4 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def after_sign_out_path_for(resource)
     root_path
   end
-
 end

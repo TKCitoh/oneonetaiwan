@@ -23,14 +23,14 @@ class Admin::EndUsersController < Admin::ApplicationController
   end
 
   private
-  def end_user_params
-    params.require(:end_user).permit(:name, :email, :is_deleted)
-  end
-
-  def guest_check
-    @end_user = EndUser.find(params[:id])
-    if @end_user.email == 'ttt@ttt.com'
-      redirect_to admin_end_users_path, alert: "ゲストユーザー情報は編集できません。"
+    def end_user_params
+      params.require(:end_user).permit(:name, :email, :is_deleted)
     end
-  end
+
+    def guest_check
+      @end_user = EndUser.find(params[:id])
+      if @end_user.email == "ttt@ttt.com"
+        redirect_to admin_end_users_path, alert: "ゲストユーザー情報は編集できません。"
+      end
+    end
 end

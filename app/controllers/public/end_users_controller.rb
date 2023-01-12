@@ -14,9 +14,9 @@ class Public::EndUsersController < Public::ApplicationController
   def update
     @end_user = current_end_user
     if @end_user.update(end_user_params)
-    redirect_to end_users_my_page_path, notice: "更新完了しました。"
+      redirect_to end_users_my_page_path, notice: "更新完了しました。"
     else
-    render :edit
+      render :edit
     end
   end
 
@@ -37,18 +37,17 @@ class Public::EndUsersController < Public::ApplicationController
   end
 
   private
-
-  def end_user_params
-    params.require(:end_user).permit(:name, :email, :profile_image)
-  end
-
-  def set_end_user
-    @end_user = current_end_user
-  end
-
-  def guest_check
-    if current_end_user.email == 'ttt@ttt.com'
-      redirect_to root_path, notice: "このページを見るには会員登録が必要です。"
+    def end_user_params
+      params.require(:end_user).permit(:name, :email, :profile_image)
     end
-  end
+
+    def set_end_user
+      @end_user = current_end_user
+    end
+
+    def guest_check
+      if current_end_user.email == "ttt@ttt.com"
+        redirect_to root_path, notice: "このページを見るには会員登録が必要です。"
+      end
+    end
 end

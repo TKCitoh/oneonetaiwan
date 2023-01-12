@@ -31,7 +31,7 @@ class Post < ApplicationRecord
   end
 
   def save_tag(sent_tags)
-  # タグが存在していれば、タグの名前を配列として全て取得
+    # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags
@@ -47,6 +47,6 @@ class Post < ApplicationRecord
     new_tags.each do |new|
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
-   end
+    end
   end
 end
