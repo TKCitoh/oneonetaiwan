@@ -1,4 +1,4 @@
-# ONE ONE TAIWAN
+# OneOneTaiwan
 
 ## サイト概要
 ### サイトテーマ
@@ -28,18 +28,17 @@
 
 
 ## 設計書
-<...>
+- ER図：https://app.diagrams.net/#G1Hr9BfBxWkQES9s669EZYVrKcscQcSbPV
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1MV28oq0hOGs7qCjfIEnPREZ6vfdUk6ybsR-SzBbHK14/edit#gid=1243549839
 
 ## 開発環境
-- OS：Linux(CentOS)
 - - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
 - 画像素材：https://www.photo-ac.com/. :https://o-dan.net/ja/  動画素材：https://www.pexels.com/ja-jp/
 - イラスト素材：https://tyoudoii-illust.com/?s=（使わない場合は消す）
--
+- ロゴ素材：https://www.designevo.com/
 ##実装機能リスト
 ・https://docs.google.com/spreadsheets/d/1NNKRzRtfgTjCzQBZAiYPBHHIvHa9bbaY66T7w4XcdZY/edit#gid=454260661
