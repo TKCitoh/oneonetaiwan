@@ -7,6 +7,6 @@ class Admin::PostsController < Admin::ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to admin_posts_path, alart: "削除しました。"
+    redirect_to admin_posts_path, alert: "削除しました。"
   end
 end
