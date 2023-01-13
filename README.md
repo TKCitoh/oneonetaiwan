@@ -41,4 +41,4 @@
 - ロゴ素材：https://www.designevo.com/
 
 ## 実装機能リスト
-・https://docs.google.com/spreadsheets/d/1NNKRzRtfgTjCzQBZAiYPBHHIvHa9bbaY66T7w4XcdZY/edit#gid=454260661
+- https://docs.google.com/spreadsheets/d/1NNKRzRtfgTjCzQBZAiYPBHHIvHa9bbaY66T7w4XcdZY/edit#gid=454260661
