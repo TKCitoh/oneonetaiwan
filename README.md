@@ -31,7 +31,7 @@
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1MV28oq0hOGs7qCjfIEnPREZ6vfdUk6ybsR-SzBbHK14/edit#gid=1243549839
 
 ## 開発環境
-- - 言語：HTML,CSS,JavaScript,Ruby,SQL
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - IDE：Cloud9
 
