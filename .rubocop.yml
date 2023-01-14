@@ -310,3 +310,6 @@ Performance/OpenStruct:
 
 Minitest/UnreachableAssertion:
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

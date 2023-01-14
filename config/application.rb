@@ -11,7 +11,7 @@ module Oneonetaiwan
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    #言語設定の変更
+    # 言語設定の変更
     config.i18n.default_locale = :ja
     # Configuration for the application, engines, and railties goes here.
     #
