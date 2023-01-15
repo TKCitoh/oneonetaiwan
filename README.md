@@ -37,7 +37,6 @@
 
 ## 使用素材
 - 画像素材：https://www.photo-ac.com/. :https://o-dan.net/ja/  動画素材：https://www.pexels.com/ja-jp/
-- イラスト素材：https://tyoudoii-illust.com/?s=（使わない場合は消す）
 - ロゴ素材：https://www.designevo.com/
 
 ## 実装機能リスト
