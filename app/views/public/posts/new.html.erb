@@ -69,7 +69,7 @@
     }
 
     navigator.geolocation.getCurrentPosition(function(position) {
-      latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      latLng = new google.maps.LatLng(25.04804725973179, 121.51702880859375);
 
       map = new google.maps.Map(document.getElementById('map'), {
         center: latLng,
@@ -104,10 +104,6 @@
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
-        // let marker = new google.maps.Marker({
-        //   map: map,
-        //   position: results[0].geometry.location
-        // });
       } else {
           alert('該当する結果がありませんでした：' + status);
       }
