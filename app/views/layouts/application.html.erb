@@ -41,6 +41,7 @@
               <% end %>
             </li>
           <% elsif end_user_signed_in? %>
+            <li class="nav-item mt-2 mr-5 text-white">ようこそ、<%= current_end_user.name %>さん!</li>
             <li class="nav-item">
               <%= link_to end_users_my_page_path, class: 'nav-link text-white' do %>
                 <i class="fas fa-home"></i> マイページ
