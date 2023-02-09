@@ -13,7 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-import 'packs/application.js';
+require("packs/post");
 import 'stylesheets/application.scss';
 
 Rails.start()
