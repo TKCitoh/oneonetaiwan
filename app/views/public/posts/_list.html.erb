@@ -39,25 +39,14 @@
 }
 </style>
 
-<!-- js部分 -->
 <script>
   function initMap() {
 
     //初期表示位置
     let latlng = new google.maps.LatLng(23.89428003136443, 120.92689789745654);
-    //デザイン
-    let styles = [
-         {
-          stylers: [
-           { "saturation": 0 },
-           { "lightness": 0 }
-          ]
-         }
-        ];
 
     let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        styles: styles,
         center: latlng
     });
     let transitLayer = new google.maps.TransitLayer();
@@ -85,5 +74,3 @@
     //複数マーカー ここまで
   }
 </script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
