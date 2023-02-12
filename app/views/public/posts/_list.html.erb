@@ -30,14 +30,9 @@
   <%= paginate posts %>
 </div>
 
-<div id="map"></div>
+<div id="map">
 
-<style>
-#map {
-  height: 600px;
-  width: 100%;
-}
-</style>
+
 
 <script>
   function initMap() {
@@ -52,7 +47,7 @@
     let transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-//複数マーカー ここから
+    //複数マーカー 
     <% posts.each do |post|%>
       ( function() {
         let markerLatLng = { lat: <%= post.latitude %>, lng: <%= post.longitude %> }; // 緯度経度のデータ作成
@@ -60,7 +55,7 @@
           position: markerLatLng,
           map: map
         });
-//マーカーをクリックしたとき、詳細情報を表示
+    //マーカーをクリックしたとき、詳細情報を表示
         let infowindow = new google.maps.InfoWindow({
           position: markerLatLng,
           content: "<a href='<%= post_url(post.id) %>' target='_blank'><%= post.caption %></a>"
@@ -73,3 +68,4 @@
     <% end %>
   }
 </script>
+</div>
