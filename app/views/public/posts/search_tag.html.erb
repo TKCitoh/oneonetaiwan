@@ -2,16 +2,20 @@
   <h2 class="public-title">タグが<%=@tag.name%>の投稿一覧</h2>
 
   <!--タグリスト-->
+  <div class="tag mb-3">
   <% @tag_list.each do |list|%>
-  <%=link_to list.name, search_tag_posts_path(tag_id: list.id) %>
-  <%="(#{list.posts.count})" %><% end %>
+    <%=link_to list.name, search_tag_posts_path(tag_id: list.id), class: 'text-white' %>
+    <%="(#{list.posts.count})" %>
+  <% end %>
+  </div>
   <% @posts.each do |post| %>
   <!--投稿はカードで囲む-->
   <div class="card">
     <div class="card-body">
       <!--タイトル表示される文字数は２５文字までにしてます-->
       <h6 class="card-title">
-        <%=link_to post_path(post.id) do %><%= post.title.truncate(25) %>
+        <%=link_to post_path(post.id) do %>
+          <%= post.title.truncate(5) %>
         <% end %>
       </h6>
     </div>
