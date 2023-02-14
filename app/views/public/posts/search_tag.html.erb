@@ -2,12 +2,13 @@
   <h2 class="public-title">タグが<%=@tag.name%>の投稿一覧</h2>
 
   <!--タグリスト-->
-  <div class="tag mb-3">
   <% @tag_list.each do |list|%>
+  <div class="tag mb-3">
     <%=link_to list.name, search_tag_posts_path(tag_id: list.id), class: 'text-white' %>
     <%="(#{list.posts.count})" %>
-  <% end %>
   </div>
+  <% end %>
+
   <% @posts.each do |post| %>
   <!--投稿はカードで囲む-->
   <div class="card">
